@@ -2,10 +2,20 @@
   "compilerOptions": {
     "composite": true,
     "skipLibCheck": true,
-    "module": "ESNext",
-    "moduleResolution": "bundler",
+    "module": "ESNext",            // Use modern module system for bundlers
+    "moduleResolution": "node",    // Resolve modules like Node.js
     "allowSyntheticDefaultImports": true,
-    "strict": true
+    "strict": true,                // Enable strict type checking
+    "esModuleInterop": true,
+    "target": "ESNext"             // Target the latest ECMAScript version
   },
-  "include": ["../vite.config.ts"]
+  "include": [
+    "../vite.config.ts",           // Include the Vite config file
+    "../client/src/**/*.tsx",      // Include the client-side React files
+    "../client/src/**/*.ts",       // Include TypeScript files like models and services
+    "../cypress/**/*.ts"           // Include Cypress test files if relevant
+  ],
+  "exclude": [
+    "node_modules"                 // Exclude node_modules to avoid unnecessary checks
+  ]
 }

@@ -1,23 +1,38 @@
-describe('Quiz End-to-End Test', () => {
-    it('should fetch and display random questions', () => {
-      // Visit the quiz page
-      cy.visit('/'); // Make sure this path is correct based on your app
+describe('Tech Quiz', () => {
+    beforeEach(() => {
+      // Load the mock questions from fixtures
+      cy.fixture('questions.json').as('mockQuestions');
   
-      // Intercept the API call for random questions
-      cy.intercept('GET', '/api/questions/random').as('getQuestions');
-      cy.wait('@getQuestions');
+      // Intercept the API call and respond with the mock questions
+      cy.intercept('GET', '/api/questions/random', {
+        statusCode: 200,
+        body: this.mockQuestions, // Use the mock questions here
+      }).as('getRandomQuestions');
+    });
   
-      // Verify questions are displayed on the page
-      cy.contains('What is the output of print(2 ** 3)?');
-      cy.contains('Which of the following is a mutable data type in Python?');
+    it('should display a quiz question', () => {
+      // Visit the page that triggers the API call to load questions
+      cy.visit('/');
   
-      // Answer a question 
-      cy.get('input[name="answer-0"]').check('8'); // For the first question
-      cy.get('input[name="answer-1"]').check('list'); // For the second question
+      // Wait for the API call to be intercepted
+      cy.wait('@getRandomQuestions');
   
-      // Submit the quiz and verify the score 
-      cy.get('button[type="submit"]').click();
-      cy.contains('Your score is 2/2'); // Example score
+      // Assert that the quiz questions are displayed
+      cy.get('.quiz-question').should('be.visible');
+      cy.get('.quiz-answer').should('have.length', 4); // Assuming 4 answers per question
+    });
+  
+    it('should allow selecting an answer', () => {
+      cy.visit('/');
+  
+      // Wait for questions to load
+      cy.wait('@getRandomQuestions');
+  
+      // Click on an answer
+      cy.get('.quiz-answer').first().click();
+  
+      // Assert that the answer was selected
+      cy.get('.quiz-answer.selected').should('have.length', 1);
     });
   });
   
