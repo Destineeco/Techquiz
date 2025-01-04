@@ -14,7 +14,7 @@
     "../client/src/**/*.tsx",      // Include the client-side React files
     "../client/src/**/*.ts",       // Include TypeScript files like models and services
     "../cypress/**/*.ts"           // Include Cypress test files if relevant
-  ],
+, "../cypress/support/commands.js", "../cypress/support/component.js", "../cypress/component/Quiz.cy.ts" , "../cypress/component/Quiz.cy.jsx", "../cypress/e2e/quiz.cy.js" ],
   "exclude": [
     "node_modules"                 // Exclude node_modules to avoid unnecessary checks
   ]

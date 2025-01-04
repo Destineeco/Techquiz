@@ -1,3 +1,4 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { useState, } from 'react';
 import { getQuestions } from '../services/questionApi.js';
 const Quiz = () => {
@@ -38,39 +39,15 @@ const Quiz = () => {
         setCurrentQuestionIndex(0);
     };
     if (!quizStarted) {
-        return (<div className="p-4 text-center">
-        <button className="btn btn-primary d-inline-block mx-auto" onClick={handleStartQuiz}>
-          Start Quiz
-        </button>
-      </div>);
+        return (_jsx("div", { className: "p-4 text-center", children: _jsx("button", { className: "btn btn-primary d-inline-block mx-auto", onClick: handleStartQuiz, children: "Start Quiz" }) }));
     }
     if (quizCompleted) {
-        return (<div className="card p-4 text-center">
-        <h2>Quiz Completed</h2>
-        <div className="alert alert-success">
-          Your score: {score}/{questions.length}
-        </div>
-        <button className="btn btn-primary d-inline-block mx-auto" onClick={handleStartQuiz}>
-          Take New Quiz
-        </button>
-      </div>);
+        return (_jsxs("div", { className: "card p-4 text-center", children: [_jsx("h2", { children: "Quiz Completed" }), _jsxs("div", { className: "alert alert-success", children: ["Your score: ", score, "/", questions.length] }), _jsx("button", { className: "btn btn-primary d-inline-block mx-auto", onClick: handleStartQuiz, children: "Take New Quiz" })] }));
     }
     if (questions.length === 0) {
-        return (<div className="d-flex justify-content-center align-items-center vh-100">
-        <div className="spinner-border text-primary" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
-      </div>);
+        return (_jsx("div", { className: "d-flex justify-content-center align-items-center vh-100", children: _jsx("div", { className: "spinner-border text-primary", role: "status", children: _jsx("span", { className: "visually-hidden", children: "Loading..." }) }) }));
     }
     const currentQuestion = questions[currentQuestionIndex];
-    return (<div className='card p-4'>
-      <h2>{currentQuestion.question}</h2>
-      <div className="mt-3">
-      {currentQuestion.answers.map((answer, index) => (<div key={index} className="d-flex align-items-center mb-2">
-          <button className="btn btn-primary" onClick={() => handleAnswerClick(answer.isCorrect)}>{index + 1}</button>
-          <div className="alert alert-secondary mb-0 ms-2 flex-grow-1">{answer.text}</div>
-        </div>))}
-      </div>
-    </div>);
+    return (_jsxs("div", { className: 'card p-4', children: [_jsx("h2", { children: currentQuestion.question }), _jsx("div", { className: "mt-3", children: currentQuestion.answers.map((answer, index) => (_jsxs("div", { className: "d-flex align-items-center mb-2", children: [_jsx("button", { className: "btn btn-primary", onClick: () => handleAnswerClick(answer.isCorrect), children: index + 1 }), _jsx("div", { className: "alert alert-secondary mb-0 ms-2 flex-grow-1", children: answer.text })] }, index))) })] }));
 };
 export default Quiz;

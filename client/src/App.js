@@ -1,7 +1,6 @@
+import { jsx as _jsx } from "react/jsx-runtime";
 import Quiz from './components/Quiz';
 function App() {
-    return (<div className="App">
-      <Quiz />
-    </div>);
+    return (_jsx("div", { className: "App", children: _jsx(Quiz, {}) }));
 }
 export default App;

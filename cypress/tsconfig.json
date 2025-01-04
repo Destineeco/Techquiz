@@ -1,16 +1,20 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "jsx": "react-jsx",          // React JSX for React 17+ projects
-    "moduleResolution": "node",  // Common setting for module resolution
-    "esModuleInterop": true,     // For smooth imports of CommonJS modules
-    "skipLibCheck": true         // Skip checking of library files to improve performance
+    "baseUrl": ".",                     // Root directory for resolving non-relative module names
+    "jsx": "react-jsx",                 // React JSX for React 17+ projects
+    "moduleResolution": "node",         // Resolve modules using Node's resolution algorithm
+    "esModuleInterop": true,            // Enable interoperability between CommonJS and ES Modules
+    "skipLibCheck": true,               // Skip checking of library files for better performance
+    "types": [
+      "cypress",                         // Explicitly include Cypress types
+      "node"                             // Include Node.js types if needed
+    ]
   },
   "include": [
-    "cypress/**/*.ts",           // Include all Cypress test files
-    "../client/src/**/*.tsx"     // Include the client components (like Quiz.tsx)
+    "cypress/**/*.ts",                  // Include all Cypress test files
+    "../client/src/**/*.tsx"            // Include client-side components, like Quiz.tsx
   ],
   "exclude": [
-    "node_modules"               // Exclude node_modules as usual
+    "node_modules"                      // Exclude node_modules to avoid unnecessary checks
   ]
 }

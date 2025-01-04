@@ -1,28 +1,29 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
-    "moduleResolution": "bundler",  // Can be "node" if you're not using a bundler like Vite or Webpack
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
     "skipLibCheck": true,
-    "isolatedModules": true,
-    "allowImportingTsExtensions": true,
-    "noEmit": true,
-    "jsx": "react-jsx",  // Required for JSX support in TypeScript (React 17+)
-    "strict": true,  // Enable strict type-checking options
-    "noUnusedLocals": true,  // Report unused local variables
-    "noUnusedParameters": true,  // Report unused function parameters
-    "noFallthroughCasesInSwitch": true,  // Prevent fall-through cases in switch statements
-    "esModuleInterop": true, // Ensures interoperability between ES and CommonJS modules
-    "resolveJsonModule": true // To allow importing JSON files directly
+    "allowJs": true,
+    "checkJs": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noImplicitOverride": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react-jsx", // Ensure this is set to 'react-jsx' for React 17+
+    "baseUrl": "./src", 
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
   "include": [
-    "src"  // This ensures all files in the 'src' folder are included
+    "src/**/*"
   ],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"  // If you have a separate tsconfig for the server-side code
-    }
+  "exclude": [
+    "node_modules"
   ]
 }

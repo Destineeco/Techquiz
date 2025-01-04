@@ -4,6 +4,8 @@
   "description": "",
   "type": "module",
   "scripts": {
+    "test": "cypress run",
+    "cypress": "cypress open",
     "start": "npm run client:build && npm run server",
     "start:dev": "concurrently \"npm run server:dev\" \"wait-on tcp:3001 && npm run client:dev\"",
     "server": "cd server && npm start",
@@ -19,9 +21,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@cypress/react": "^8.0.2",
+    "@testing-library/react": "^16.1.0",
     "@types/cypress": "^0.1.6",
     "@types/react": "^18.3.3",
-    "@vitejs/plugin-react": "^4.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
     "concurrently": "^8.2.2",
     "cypress": "^13.17.0",
     "nodemon": "^3.1.3",
